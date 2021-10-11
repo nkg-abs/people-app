@@ -1,13 +1,18 @@
-import { render, screen } from '@testing-library/react';
+/* eslint-disable react/react-in-jsx-scope */
+import { render } from '@testing-library/react';
 
 import App from './App';
+import * as NameInput from './components/nameInput';
 import context from './core/context';
 
 describe('App', () => {
-	test('renders with a welcome message', () => {
-		render(App(context));
-		const someText = screen.getByText(context.config.message);
+	test('renders with Input component.', () => {
+		jest.spyOn(NameInput, 'default')
+			.mockReturnValue(<input role="name"/>);
+		const { getByRole } = render(App(context));
 
-		expect(someText).toBeInTheDocument();
+		expect(getByRole('name')).toBeInTheDocument();
+		expect(getByRole('app')).toBeInTheDocument();
+		expect(getByRole('app')).toHaveClass('App');
 	});
 });

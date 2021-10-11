@@ -1,7 +1,10 @@
 import { React } from 'react';
+import Name from './components/nameInput';
 import './App.scss';
 
-const App = ({ config }) =>
-	<div className="App">{ config.message }</div>;
+const App = () =>
+	<div className="App" role="app">
+		{ Name() }
+	</div>;
 
 export default App;
