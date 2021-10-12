@@ -8,6 +8,7 @@ import * as Gender from './components/gender';
 import * as MaritalStatus from './components/marital-status';
 import { map } from '@laufire/utils/collection';
 import * as Add from './components/add';
+import * as People from './components/people';
 
 describe('App', () => {
 	test('renders with Input component.', () => {
@@ -18,6 +19,7 @@ describe('App', () => {
 			gender: Gender,
 			maritalStatus: MaritalStatus,
 			add: Add,
+			people: People,
 		};
 
 		map(components, (Component, role) => jest.spyOn(Component, 'default')

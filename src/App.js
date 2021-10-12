@@ -5,6 +5,7 @@ import Age from './components/age';
 import Gender from './components/gender';
 import MaritalStatus from './components/marital-status';
 import Add from './components/add';
+import People from './components/people';
 
 const App = (context) =>
 	<div className="App" role="app">
@@ -13,6 +14,7 @@ const App = (context) =>
 		{ Gender(context) }
 		{ MaritalStatus(context) }
 		{ Add(context) }
+		{ People(context)}
 	</div>;
 
 export default App;
