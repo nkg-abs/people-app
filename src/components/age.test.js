@@ -3,16 +3,13 @@ import Helpers from '../services/helpers';
 import Age from '../components/age';
 import { rndBetween } from '@laufire/utils/random';
 
-describe('age', () => {
-	const age = rndBetween(1, 10);
-
+describe('age', () =>
 	Helpers.testInput({ lib: {
 		Component: Age,
 		role: 'age',
 	},
 	attributes: {
-		value: String(age),
+		value: String(rndBetween(1, 10)),
 		placeholder: 'Enter age...',
 	},
-	changeValue: String(rndBetween(20, 30)) });
-});
+	changeValue: String(rndBetween(11, 21)) }));

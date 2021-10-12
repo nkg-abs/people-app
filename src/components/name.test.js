@@ -2,16 +2,13 @@ import Name from './name';
 import { rndString } from '@laufire/utils/random';
 import Helpers from '../services/helpers';
 
-describe('name', () => {
-	const name = rndString();
-
+describe('name', () =>
 	Helpers.testInput({ lib: {
 		Component: Name,
 		role: 'name',
 	},
 	attributes: {
-		value: name,
+		value: rndString(),
 		placeholder: 'Enter a name...',
 	},
-	changeValue: rndString() });
-});
+	changeValue: rndString() }));

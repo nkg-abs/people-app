@@ -1,5 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 import Add from './add';
+import { map } from '@laufire/utils/collection';
 
 describe('add', () => {
 	const context = { actions: { addPerson: jest.fn(), reset: jest.fn() }};
@@ -11,14 +12,15 @@ describe('add', () => {
 		expect(component).toHaveTextContent('+');
 	});
 
-	test('triggers a event, addPeople', () => {
-		jest.spyOn(context.actions, 'addPerson');
-		jest.spyOn(context.actions, 'reset');
+	test('triggers actions, addPerson and reset', () => {
+		map(context.actions, (value, key) =>
+			jest.spyOn(context.actions, key).mockImplementation());
+
 		const component = render(Add(context)).getByRole('add');
 
 		fireEvent.click(component);
 
-		expect(context.actions.addPerson).toHaveBeenCalled();
-		expect(context.actions.addPerson).toHaveBeenCalled();
+		map(context.actions, (value, key) =>
+			expect(context.actions[key]).toHaveBeenCalled());
 	});
 });

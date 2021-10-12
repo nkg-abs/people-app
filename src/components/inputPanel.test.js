@@ -24,10 +24,10 @@ describe('inputPanel', () => {
 
 		const { getByRole } = render(InputPanel(context));
 
+		expect(getByRole('inputPanel')).toBeInTheDocument();
 		map(components, (Component, role) => {
 			expect(getByRole(role)).toBeInTheDocument();
 			expect(Component.default).toHaveBeenCalledWith(context);
 		});
-		expect(getByRole('inputPanel')).toBeInTheDocument();
 	});
 });
