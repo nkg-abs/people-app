@@ -1,29 +1,33 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { render } from '@testing-library/react';
-
-import App from './App';
+import * as Add from './add';
+import * as Age from './age';
+import * as Gender from './gender';
+import * as MaritalStatus from './marital-status';
+import * as Name from './name';
 import { map } from '@laufire/utils/collection';
-import * as People from './components/people';
-import * as InputPanel from './components/inputPanel';
+import InputPanel from './inputPanel';
 
-describe('App', () => {
+describe('inputPanel', () => {
 	test('renders with Input component.', () => {
 		const context = Symbol('context');
 		const components = {
-			inputPanel: InputPanel,
-			people: People,
+			name: Name,
+			age: Age,
+			gender: Gender,
+			maritalStatus: MaritalStatus,
+			add: Add,
 		};
 
 		map(components, (Component, role) => jest.spyOn(Component, 'default')
 			.mockReturnValue(<input role={ role }/>));
 
-		const { getByRole } = render(App(context));
+		const { getByRole } = render(InputPanel(context));
 
 		map(components, (Component, role) => {
 			expect(getByRole(role)).toBeInTheDocument();
 			expect(Component.default).toHaveBeenCalledWith(context);
 		});
-		expect(getByRole('app')).toBeInTheDocument();
-		expect(getByRole('app')).toHaveClass('App');
+		expect(getByRole('inputPanel')).toBeInTheDocument();
 	});
 });
