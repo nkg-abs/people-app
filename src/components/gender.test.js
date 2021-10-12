@@ -4,7 +4,7 @@ import context from '../core/context';
 import { shuffle } from '@laufire/utils/collection';
 
 describe('gender', () => {
-	const [value, changeValue] = shuffle(context.config.gender);
+	const [value, changeValue] = shuffle(context.config.genders);
 
 	Helpers.testInput({ lib: {
 		Component: Gender,

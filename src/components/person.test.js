@@ -8,7 +8,7 @@ describe('person', () => {
 		const mockContext = {
 			name: rndString(),
 			age: rndBetween(0, 1),
-			gender: rndValue(context.config.gender),
+			gender: rndValue(context.config.genders),
 			maritalStatus: rndValue(context.config.maritalState),
 		};
 

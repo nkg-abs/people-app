@@ -5,15 +5,15 @@ describe('actions', () => {
 	const { patchState, addPerson, reset } = context.actions;
 
 	test('patchState sets state', () => {
-		const key = Symbol('key');
-		const mockContext = { data: { key }};
+		const data = Symbol('data');
+		const mockContext = { data };
 
 		const result = patchState(mockContext);
 
-		expect(result).toEqual({ key });
+		expect(result).toEqual(data);
 	});
 
-	test('addPerson add new person', () => {
+	test('addPerson adds a new person', () => {
 		const people = Symbol('people');
 		const mockContext = Symbol('context');
 
@@ -27,11 +27,10 @@ describe('actions', () => {
 
 	test('reset to inital value', () => {
 		const people = [Symbol('people')];
-		const seed = { seed: Symbol('seed'), people: people };
-		const mockContext = { state: { people }, seed: seed };
+		const mockContext = { state: { people }, seed: context.seed };
 
 		const result = reset(mockContext);
 
-		expect(result).toEqual({ ...seed, people });
+		expect(result).toEqual({ ...context.seed, people });
 	});
 });

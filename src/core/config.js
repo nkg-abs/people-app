@@ -1,5 +1,5 @@
 const config = {
-	gender: ['male', 'female'],
+	genders: ['male', 'female'],
 	maritalState: ['married', 'single'],
 };
 
