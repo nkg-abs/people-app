@@ -3,27 +3,16 @@ import PeopleService from './people';
 describe('people', () => {
 	test('includes people', () => {
 		const people = [];
-		const [name, age, maritalStatus, gender] = [
-			Symbol('name'),
-			Symbol('age'),
-			Symbol('maritalStatus'),
-			Symbol('gender'),
-		];
-		const mockContext = { state: {
-			name,
-			age,
-			maritalStatus,
-			gender,
-			people,
-		}};
+		const state = {
+			name:	Symbol('name'),
+			age: Symbol('age'),
+			maritalStatus: Symbol('maritalStatus'),
+			gender: Symbol('gender'),
+		};
+		const mockContext = { state: { ...state, people }};
 
 		const result = PeopleService.addPerson(mockContext);
 
-		expect(result).toEqual([{
-			name,
-			age,
-			maritalStatus,
-			gender,
-		}]);
+		expect(result).toEqual([state]);
 	});
 });

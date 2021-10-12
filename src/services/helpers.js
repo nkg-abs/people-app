@@ -1,16 +1,14 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
 import { map } from '@laufire/utils/collection';
+import context from '../core/context';
 
 const Helpers = {
 	testInput: ({ lib: { Component, role }, attributes, changeValue }) => {
 		const mockContext = {
 			state: { [role]: attributes.value },
 			actions: { patchState: jest.fn() },
-			config: {
-				gender: ['male', 'female'],
-				maritalState: ['married', 'single'],
-			},
+			config: context.config,
 		};
 
 		test(`renders ${ role } component with appropriate attributes`, () => {

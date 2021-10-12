@@ -3,7 +3,7 @@ import React from 'react';
 const Gender = ({
 	state: { gender },
 	actions: { patchState },
-	config: { gender: options },
+	config: { genders: options },
 }) =>
 	<select
 		role="gender"
