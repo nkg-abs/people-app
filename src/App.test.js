@@ -5,27 +5,29 @@ import App from './App';
 import * as Name from './components/name';
 import * as Age from './components/age';
 import * as Gender from './components/gender';
+import * as MaritalStatus from './components/marital-status';
+import { map } from '@laufire/utils/collection';
 
 describe('App', () => {
 	test('renders with Input component.', () => {
 		const context = Symbol('context');
+		const components = {
+			name: Name,
+			age: Age,
+			gender: Gender,
+			maritalStatus: MaritalStatus,
+		};
 
-		jest.spyOn(Name, 'default')
-			.mockReturnValue(<input role="name"/>);
-		jest.spyOn(Age, 'default')
-			.mockReturnValue(<input role="age"/>);
-		jest.spyOn(Gender, 'default')
-			.mockReturnValue(<input role="gender"/>);
+		map(components, (Component, role) => jest.spyOn(Component, 'default')
+			.mockReturnValue(<input role={ role }/>));
 
 		const { getByRole } = render(App(context));
 
-		expect(getByRole('name')).toBeInTheDocument();
-		expect(getByRole('age')).toBeInTheDocument();
-		expect(getByRole('gender')).toBeInTheDocument();
+		map(components, (Component, role) => {
+			expect(getByRole(role)).toBeInTheDocument();
+			expect(Component.default).toHaveBeenCalledWith(context);
+		});
 		expect(getByRole('app')).toBeInTheDocument();
 		expect(getByRole('app')).toHaveClass('App');
-		expect(Name.default).toHaveBeenCalledWith(context);
-		expect(Age.default).toHaveBeenCalledWith(context);
-		expect(Gender.default).toHaveBeenCalledWith(context);
 	});
 });

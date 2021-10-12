@@ -7,7 +7,10 @@ const Helpers = {
 		const mockContext = {
 			state: { [role]: attributes.value },
 			actions: { patchState: jest.fn() },
-			config: { gender: ['male', 'female'] },
+			config: {
+				gender: ['male', 'female'],
+				maritalState: ['married', 'single'],
+			},
 		};
 
 		test(`renders ${ role } component with appropriate attributes`, () => {
