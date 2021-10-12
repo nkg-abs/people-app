@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Add = ({ actions: { addPeople }}) =>
+const Add = ({ actions: { addPerson }}) =>
 	<button
 		role="add"
-		onClick={ addPeople }
+		onClick={ addPerson }
 	>+</button>;
 
 export default Add;
