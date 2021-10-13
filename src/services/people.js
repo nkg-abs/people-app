@@ -1,6 +1,14 @@
+import { rndString } from '@laufire/utils/random';
+
 const PeopleService = {
-	addPerson: ({ state: { people, name, age, maritalStatus, gender }}) =>
-		people.concat({ name, age, maritalStatus, gender }),
+	addPerson: ({
+		state: { people, name, age, maritalStatus, gender },
+	}) => {
+		const id = rndString();
+
+		return people.concat({ id, name, age, maritalStatus, gender });
+	}
+	,
 };
 
 export default PeopleService;

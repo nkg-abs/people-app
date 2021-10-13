@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Person = ({ name, age, gender, maritalStatus }) =>
-	<div key={ name } role="person">
+const Person = ({
+	data: { id, name, age, gender, maritalStatus },
+}) =>
+	<div key={ id } role="person">
 		{ name } { age } { gender } { maritalStatus}
 	</div>;
 

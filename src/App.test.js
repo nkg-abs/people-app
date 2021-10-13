@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { render } from '@testing-library/react';
-
 import App from './App';
 import { map } from '@laufire/utils/collection';
 import * as People from './components/people';
@@ -18,12 +17,13 @@ describe('App', () => {
 			.mockReturnValue(<input role={ role }/>));
 
 		const { getByRole } = render(App(context));
+		const appComponent = getByRole('app');
 
 		map(components, (Component, role) => {
 			expect(getByRole(role)).toBeInTheDocument();
 			expect(Component.default).toHaveBeenCalledWith(context);
 		});
-		expect(getByRole('app')).toBeInTheDocument();
-		expect(getByRole('app')).toHaveClass('App');
+		expect(appComponent).toBeInTheDocument();
+		expect(appComponent).toHaveClass('App');
 	});
 });
