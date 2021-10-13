@@ -13,9 +13,6 @@ describe('add', () => {
 	});
 
 	test('triggers actions, addPerson and reset', () => {
-		map(context.actions, (value, key) =>
-			jest.spyOn(context.actions, key).mockImplementation());
-
 		const component = render(Add(context)).getByRole('add');
 
 		fireEvent.click(component);

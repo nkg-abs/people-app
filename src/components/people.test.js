@@ -9,8 +9,7 @@ describe('people', () => {
 	test('repesents people details', () => {
 		// eslint-disable-next-line no-magic-numbers
 		const rndPeople = range(2, rndBetween(3, 5));
-		const id = () => rndString();
-		const people = rndPeople.map(() => ({ id: id() }));
+		const people = rndPeople.map(() => ({ id: rndString() }));
 		const context = { state: { people }};
 
 		jest.spyOn(Person, 'default')
