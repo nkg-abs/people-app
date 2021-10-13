@@ -3,25 +3,26 @@ import { render } from '@testing-library/react';
 import People from './people';
 import * as Person from './person';
 import { range } from '@laufire/utils/collection';
-import { rndBetween } from '@laufire/utils/lib';
+import { rndBetween, rndString } from '@laufire/utils/random';
 
 describe('people', () => {
 	test('repesents people details', () => {
 		// eslint-disable-next-line no-magic-numbers
-		const rndPeople = range(1, rndBetween(1, 3));
-		const people = rndPeople.map((id) => ({ id }));
+		const rndPeople = range(2, rndBetween(3, 5));
+		const id = () => rndString();
+		const people = rndPeople.map(() => ({ id: id() }));
 		const context = { state: { people }};
 
 		jest.spyOn(Person, 'default')
-			.mockImplementation(({ data: { id }}) =>
-				<div key={ id } role={ id }/>);
+			.mockImplementation(({ data: { id: key }}) =>
+				<div key={ key } role={ key }/>);
 
 		const { getByRole } = render(People(context));
 
-		rndPeople.forEach((id) => {
+		people.forEach((person) => {
 			expect(Person.default)
-				.toHaveBeenCalledWith({ ...context, data: { id }});
-			expect(getByRole(id)).toBeInTheDocument();
+				.toHaveBeenCalledWith({ ...context, data: person });
+			expect(getByRole(person.id)).toBeInTheDocument();
 		});
 		expect(getByRole('people')).toBeInTheDocument();
 	});
